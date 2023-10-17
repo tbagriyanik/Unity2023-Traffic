@@ -1,5 +1,5 @@
 # Unity 2023 -Traffic Simulation
- Low Poly - simple code traffic simulation
+ Low Poly - simple code traffic simulation, total 140 lines of C# in 2 files
 
 - Working traffic lights for vehicle flow
 - Vehicles slows if there is a vehicle in front of them
