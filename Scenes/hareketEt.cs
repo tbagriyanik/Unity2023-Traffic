@@ -21,8 +21,6 @@ public class hareketEt : MonoBehaviour
     {
         frenLambasi.SetActive(false); //normalde fren lambasý kapalý
 
-        
-
         Vector3 direction = (hedef.position - transform.position).normalized;
         rb.velocity = direction * aracHizi;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -40,7 +38,8 @@ public class hareketEt : MonoBehaviour
         }
 
         Ray carray = new(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.forward);
-        if (Physics.Raycast(carray, out RaycastHit carhit, rayLength) && carhit.transform.gameObject.CompareTag("vehicle"))
+        if (Physics.Raycast(carray, out RaycastHit carhit, rayLength) &&
+            (carhit.transform.gameObject.CompareTag("vehicle") || carhit.transform.gameObject.CompareTag("pedestrian")))
         {
             dur(); //önde araç var, dur
         }
@@ -51,7 +50,7 @@ public class hareketEt : MonoBehaviour
         if (hedef.gameObject.GetComponent<sonrakiHedef>().trafikLambalari.Length == 0) return false;
 
         return hedef.gameObject.GetComponent<sonrakiHedef>().trafikLambalari[0].activeSelf ||
-            hedef.gameObject.GetComponent<sonrakiHedef>().trafikLambalari[1].activeSelf;        
+            hedef.gameObject.GetComponent<sonrakiHedef>().trafikLambalari[1].activeSelf;
     }
 
     private void dur()
